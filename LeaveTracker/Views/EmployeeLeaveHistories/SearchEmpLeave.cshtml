@@ -1,0 +1,55 @@
+﻿@model LeaveTracker.Models.LeaveApplicationViewModel
+
+<h4 class="mt-4">Ledighetsansökningar för vald anställd</h4>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="EmployeeLeaveHistories" asp-action="SearchEmpLeave" method="get">
+            <div class="form-group">
+                <label for="employeeId">Välj en anställd i listan</label>
+                <select id="employeeId" name="employeeId" class="form-control">
+                    <option value="">--- Välj bland anställda ---</option>
+                    @foreach (var employee in ViewBag.AllEmployees)
+                    {
+                        <option value="@employee.EmployeeId">@employee.EmpFirstName</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Visa</button>
+        </form>
+    </div>
+</div>
+
+@if (Model.Employees != null && Model.Employees.Any())
+{
+    <div class="row mt-4">
+        <div class="col-md-12">
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Förnamn</th>
+                        <th scope="col">Efternamn</th>
+                        <th scope="col">Ledighetstyp</th>
+                        <th scope="col">Ansökningsdatum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model.Employees)
+                    {
+                        <tr>
+                            <td>@employee.EmpFirstName</td>
+                            <td>@employee.EmpLastName</td>
+                            <td>@employee.LeaveType</td>
+                            <td>@employee.ApplicationDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info mt-4" role="alert">
+        Ingen data tillgänglig för vald anställd.
+    </div>
+}

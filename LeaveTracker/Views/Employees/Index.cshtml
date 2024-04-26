@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LeaveTracker.Models.Employee>
+
+@{
+    ViewData["Title"] = "Anställda";
+}
+
+<h1>Anställda</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Lägg till ny anställd</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HireDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HireDate)
+            </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.EmployeeId">Redigera</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EmployeeId">Detaljer</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EmployeeId">Ta bort</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@model LeaveTracker.Models.LeaveApplicationViewModel
+
+<div class="col-md-12 mt-4">
+    <h4>Lista med anställdas ledighetsansökningar</h4>
+    @if (Model.Employees != null && Model.Employees.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Förnamn</th>
+                        <th scope="col">Efternamn</th>
+                        <th scope="col">Ledighetstyp</th>
+                        <th scope="col">Ansökningsdatum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model.Employees)
+                    {
+                        <tr>
+                            <td>@employee.EmpFirstName</td>
+                            <td>@employee.EmpLastName</td>
+                            <td>@employee.LeaveType</td>
+                            <td>@employee.ApplicationDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            Det finns inga ledighetsansökningar att visa.
+        </div>
+    }
+</div>

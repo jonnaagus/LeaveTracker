@@ -1,0 +1,60 @@
+﻿@using System.Globalization
+@model LeaveTracker.Models.LeaveApplicationViewModel
+
+<div class="container">
+    <h4 class="mt-4">Översikt för ledighetsansökningar per månad</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="EmployeeLeaveHistories" asp-action="LeaveApplicationMonth" method="get">
+                <div class="form-group">
+                    <label for="selectedMonth">Välj den månad du vill se</label>
+                    <select id="selectedMonth" name="selectedMonth" class="form-control">
+                        <option value="">--- Välj ansökningsmånad ---</option>
+                        @for (int month = 1; month <= 12; month++)
+                        {
+                            <option value="@month">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Visa</button>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.LeaveApplications != null && Model.LeaveApplications.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Förnamn</th>
+                            <th scope="col">Ledighetstyp</th>
+                            <th scope="col">Ansökningsdatum</th>
+                            <th scope="col">Startdatum</th>
+                            <th scope="col">Slutdatum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var leave in Model.LeaveApplications)
+                        {
+                            <tr>
+                                <td>@leave.Employee.EmpFirstName</td>
+                                <td>@leave.LeaveType</td>
+                                <td>@leave.ApplicationDate.ToShortDateString()</td>
+                                <td>@leave.StartDate.ToShortDateString()</td>
+                                <td>@leave.EndDate.ToShortDateString()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mt-4" role="alert">
+            Ingen data tillgänglig för vald månad.
+        </div>
+    }
+</div>

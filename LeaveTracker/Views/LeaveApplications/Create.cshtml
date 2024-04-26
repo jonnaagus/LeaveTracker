@@ -1,0 +1,55 @@
+﻿@model LeaveTracker.Models.LeaveApplication
+
+@{
+    ViewData["Title"] = "Skapa";
+}
+
+<h1>Skapa en ny ledighetsansökan</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="leaveType">Välj ledighetstyp</label>
+                <select id="leaveType" name="leaveType" class="form-control">
+                    <option value="">Välj ledighetstyp</option>
+                    <option value="Semester">Semester</option>
+                    <option value="Sjukdom">Sjukdom</option>
+                    <option value="Vård av barn">Vård av barn</option>
+                    <option value="Tjänstledighet">Tjänstledighet</option>
+                    <option value="Annan ledighet">Annan ledighet</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FKEmployeeId" class="control-label"></label>
+                <select asp-for="FKEmployeeId" class="form-control" asp-items="ViewBag.Employees"></select>
+                <span asp-validation-for="FKEmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Skapa" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Gå tillbaka</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

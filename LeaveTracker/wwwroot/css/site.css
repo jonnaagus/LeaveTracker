@@ -1,0 +1,76 @@
+/* Färgschema */
+body {
+    font-family: 'Roboto', sans-serif; /* Använd Roboto som typsnitt */
+    background-color: #ede6de; /* Greige bakgrund */
+    color: #333; /* Mörkgrå text */
+}
+
+.navbar {
+    background: linear-gradient(to right, #ede6de, #d3c0b9); /* Gradient för menyn */
+}
+
+.btn {
+    background: linear-gradient(to right, #b7a399, #a3907a); /* Gradient för knappar */
+    border-color: #a3907a;
+    color: #fff; /* Vit text för knappar */
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #8c7d6b, #7d6c56); /* Mörkare gradient vid hover */
+    border-color: #7d6c56;
+    color: #000; /* Svart text vid hover */
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #f0e8e0;
+}
+
+/* Övriga stilförbättringar */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* Formulärinmatningsfält */
+.form-control {
+    border-color: #a3907a;
+}
+
+/* Radbrytningsstil för tabeller */
+.table-striped tbody tr {
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15); /* Skuggning för radbrytningar i tabeller */
+}
+    /* Standard färgschema för tabellrader */
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #ede6de; /* Greige bakgrund för jämna rader */
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+        background-color: #f0e8e0;
+    }
+
+.alert.alert-info {
+    background-color: #d6ccc1;
+    border: 1px solid #000000;
+    box-shadow: 2px 2px 5px #888888;
+    color: #000000;
+    padding: 15px;
+}
